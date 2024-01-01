@@ -11,7 +11,7 @@
 Clone the project
 
 ```bash
-  git clone https://github.com/anish2105/Senor
+  git clone https://github.com/anish2105/Senor.git
 ```
 
 Create virtual environment
