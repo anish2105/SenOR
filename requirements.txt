@@ -1,4 +1,0 @@
-langchain
-flask
-huggingface_hub
-
