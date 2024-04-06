@@ -19,8 +19,8 @@ from pydub import AudioSegment
 from pydub.playback import play
 
 
-HF_token ='your-key'
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = 'your-key'
+HF_token ='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'
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = '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'
 # csv_file_path = 'rights.csv'
 pdf_file_path='/Users/poojaharihar/Desktop/Projects/oneapi/oneAPI-GenAI-Hackathon-2023/404found/dataset'
 
