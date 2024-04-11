@@ -19,10 +19,10 @@ from pydub import AudioSegment
 from pydub.playback import play
 
 
-HF_token ='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'
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = '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'
-# csv_file_path = 'rights.csv'
-pdf_file_path='/Users/poojaharihar/Desktop/Projects/oneapi/oneAPI-GenAI-Hackathon-2023/404found/dataset'
+hf_token = st.secrets["HUGGINGFACE_TOKEN"]["token"]
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
+
+pdf_file_path='dataset'
 
 embeddings = HuggingFaceInferenceAPIEmbeddings(
     api_key = HF_token,
