@@ -1,4 +1,5 @@
 import os
+import io
 import streamlit as st
 from langchain.chains import RetrievalQA
 from langchain.text_splitter import CharacterTextSplitter
