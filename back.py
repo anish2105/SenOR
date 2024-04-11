@@ -25,7 +25,7 @@ os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
 pdf_file_path='dataset'
 
 embeddings = HuggingFaceInferenceAPIEmbeddings(
-    api_key = HF_token,
+    api_key = hf_token,
     model_name = "sentence-transformers/all-MiniLM-L6-v2"
 )
 
