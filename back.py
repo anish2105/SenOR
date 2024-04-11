@@ -62,19 +62,3 @@ def text_speech(text):
     engine.setProperty('rate', 150)  # You can adjust the speech rate if needed
     engine.say(text)
     engine.runAndWait()
-
-
-def play_audio(audio_file_path):
-    # Check the platform to determine the appropriate command for playing audio
-    if platform.system() == "Darwin":
-        os.system("afplay " + audio_file_path)
-    elif platform.system() == "Linux":
-        os.system("aplay " + audio_file_path)
-    elif platform.system() == "Windows":
-        os.system("start " + audio_file_path)
-    else:
-        st.warning("Unsupported platform for text-to-speech")
-
-
-def stop_audio():
-     engine.stop() 
