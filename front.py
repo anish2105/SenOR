@@ -60,7 +60,6 @@ if st.session_state.messages[-1]["role"] != "assistant":
     message = {"role": "assistant", "content": full_response}
     st.session_state.messages.append(message)
 
-if st.checkbox("Convert to speech"):
 if st.button("Convert to Speech"):
         if st.session_state.messages[-1]["role"] == "assistant":
             text_speech(st.session_state.messages[-1]["content"])
