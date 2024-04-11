@@ -1,6 +1,6 @@
 import streamlit as st
-from back import *
-# import back
+#from back import *
+import back
 
 st.title("🤖 SenOR ")
 with st.sidebar:
