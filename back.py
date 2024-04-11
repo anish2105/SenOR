@@ -17,6 +17,7 @@ import base64
 import platform
 from pydub import AudioSegment
 from pydub.playback import play
+import pyttsx3
 
 
 hf_token = st.secrets["HUGGINGFACE_TOKEN"]["token"]
@@ -56,16 +57,12 @@ def model(user_query, max_length, temp):
         return "Sorry, I couldn't find the answer."
 
 def text_speech(text):
-    # Save the generated text to an audio file
-    tts = gTTS(text=text, lang='en')
-    audio_file_path = "generated_audio.mp3"
-    tts.save(audio_file_path)
-    
-    # Play the audio file
-    play_audio(audio_file_path)
+    # Initialize the Text-to-Speech engine
+    engine = pyttsx3.init()
+    engine.setProperty('rate', 150)  # You can adjust the speech rate if needed
+    engine.say(text)
+    engine.runAndWait()
 
-    # Remove the audio file after playing (optional)
-    os.remove(audio_file_path)
 
 def play_audio(audio_file_path):
     # Check the platform to determine the appropriate command for playing audio
@@ -80,4 +77,4 @@ def play_audio(audio_file_path):
 
 
 def stop_audio():
-    play.stop()
+     engine.stop() 
