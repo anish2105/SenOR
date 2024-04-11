@@ -55,10 +55,22 @@ def model(user_query, max_length, temp):
         return answer
     else:
         return "Sorry, I couldn't find the answer."
-
+        
 def text_speech(text):
-    # Initialize the Text-to-Speech engine
-    engine = pyttsx3.init()
-    engine.setProperty('rate', 150)  # You can adjust the speech rate if needed
-    engine.say(text)
-    engine.runAndWait()
+    tts = gTTS(text=text, lang='en')
+
+    # Save speech to a BytesIO object
+    speech_bytes = io.BytesIO()
+    tts.write_to_fp(speech_bytes)
+    speech_bytes.seek(0)
+
+    # Convert speech to base64 encoding
+    speech_base64 = base64.b64encode(speech_bytes.read()).decode('utf-8')
+
+    return speech_base64
+# def text_speech(text):
+#     # Initialize the Text-to-Speech engine
+#     engine = pyttsx3.init()
+#     engine.setProperty('rate', 150)  # You can adjust the speech rate if needed
+#     engine.say(text)
+#     engine.runAndWait()
