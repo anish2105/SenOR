@@ -153,3 +153,5 @@ zipp==3.18.1
 bs4
 gtts
 pydub
+pypdf
+faiss-gpu
