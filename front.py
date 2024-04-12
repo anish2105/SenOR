@@ -2,28 +2,6 @@ import streamlit as st
 from back import *
 #import back
 
-
-st.markdown(
-    """
-    👋 *Namaste! Welcome to Senor Legal Advisor!*
-    I'm here to assist you with your legal queries within the framework of Indian law. Whether you're navigating through specific legal issues or seeking general advice, I'm here to help.
-    
-    📚 *How I Can Assist:*
-    
-    - Answer questions on various aspects of Indian law.
-    - Guide you through legal processes relevant to India.
-    
-    ⚖️ *Disclaimer:*
-    
-    While I can provide general information, it's essential to consult with a qualified Indian attorney for advice tailored to your specific situation.
-    
-    🤖 *Getting Started:*
-    
-    Feel free to ask any legal question related to Indian law, using keywords like "property rights," "labor laws," or "family law." I'm here to assist you!
-    Let's get started! How can I assist you today?
-    """
-)
-
 st.title("🤖 SenOR ")
 with st.sidebar:
     st.markdown("<h1 style='text-align:center;font-family:Georgia;font-size:26px;'>🧑‍⚖️ SenOR Legal Advisor </h1>",
