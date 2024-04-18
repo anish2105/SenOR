@@ -1,5 +1,6 @@
 import os
 import io
+import pickle
 import streamlit as st
 from langchain.chains import RetrievalQA
 from langchain.text_splitter import CharacterTextSplitter
@@ -23,19 +24,17 @@ import pyttsx3
 
 hf_token = st.secrets["HUGGINGFACE_TOKEN"]["token"]
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = hf_token
-
 pdf_file_path='dataset'
 
 embeddings = HuggingFaceInferenceAPIEmbeddings(
     api_key = hf_token,
     model_name = "sentence-transformers/all-MiniLM-L6-v2"
 )
-
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=200)
-loader =  PyPDFDirectoryLoader(pdf_file_path)
-docs = loader.load()
-
-db = FAISS.from_documents(docs, embeddings)
+# text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=200)
+# loader =  PyPDFDirectoryLoader(pdf_file_path)
+#docs = loader.load()
+new_db = FAISS.load_local("merge",embeddings, allow_dangerous_deserialization=True)
+# db = FAISS.from_documents(docs, embeddings)
 prompt = hub.pull("rlm/rag-prompt", api_url="https://api.hub.langchain.com")
 
 def model(user_query, max_length, temp):
@@ -44,7 +43,8 @@ def model(user_query, max_length, temp):
         repo_id=repo_id, model_kwargs={"max_length": max_length, "temperature": temp})
     qa = RetrievalQA.from_chain_type(llm=llm,
                                      chain_type="stuff",
-                                     retriever=db.as_retriever(k=2),
+                                     retriever=new_db.as_retriever(k=2),
+                                     # retriever=db.as_retriever(k=2),
                                      return_source_documents=True,
                                      verbose=True,
                                      chain_type_kwargs={"prompt": prompt})
@@ -67,5 +67,4 @@ def text_speech(text):
 
     # Convert speech to base64 encoding
     speech_base64 = base64.b64encode(speech_bytes.read()).decode('utf-8')
-
     return speech_base64
