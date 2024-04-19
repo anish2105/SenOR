@@ -46,6 +46,7 @@ if user_prompt := st.chat_input("enter your query"):
     st.session_state.messages.append({"role": "user", "content": user_prompt})
     with st.chat_message("user"):
         st.write(user_prompt)
+st.write("*Information updated only till 2023, may be inaccurate*", width=400)
 
 if st.session_state.messages[-1]["role"] != "assistant":
     with st.chat_message("assistant"):
@@ -59,7 +60,6 @@ if st.session_state.messages[-1]["role"] != "assistant":
             placeholder.markdown(full_response)
     message = {"role": "assistant", "content": full_response}
     st.session_state.messages.append(message)
-st.write("*Information updated only till 2023, information may be inaccurate*", width=400)
 
 if st.button("Convert to Speech"):
     if st.session_state.messages[-1]["role"] == "assistant":
