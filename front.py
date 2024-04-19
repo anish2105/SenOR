@@ -59,6 +59,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
             placeholder.markdown(full_response)
     message = {"role": "assistant", "content": full_response}
     st.session_state.messages.append(message)
+st.write("*Information updated only till 2023, information may be inaccurate*", width=400)
 
 if st.button("Convert to Speech"):
     if st.session_state.messages[-1]["role"] == "assistant":
