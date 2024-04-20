@@ -71,6 +71,6 @@ if st.button("Convert to Speech"):
 
 st.markdown("""
     <div style="background-color: #FFFF8F	; padding: 10px; border-radius: 5px;">
-        <p style="color: white;">⚠️Senor can make mistakes. Information updated only till 2023. Please consider checking important information.</p>
+        <p style="color: black;">⚠️Senor can make mistakes. Information updated only till 2023. Please consider checking important information.</p>
     </div>
 """, unsafe_allow_html=True)
