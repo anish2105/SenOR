@@ -69,4 +69,4 @@ if st.button("Convert to Speech"):
 #         if st.session_state.messages[-1]["role"] == "assistant":
 #             text_speech(st.session_state.messages[-1]["content"])
 
-st.markdown("⚠️Senor can make mistakes. Information updated only till 2023.Please consider checking important information.", unsafe_allow_html=True)
+st.markdown("<p style='color:yellow;'>⚠️Senor can make mistakes. Information updated only till 2023. Please consider checking important information.</p>", unsafe_allow_html=True)
