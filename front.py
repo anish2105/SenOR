@@ -70,7 +70,7 @@ if st.button("Convert to Speech"):
 #             text_speech(st.session_state.messages[-1]["content"])
 
 st.markdown("""
-    <div style="background-color: yellow; padding: 10px; border-radius: 5px;">
+    <div style="background-color: #FFFF8F	; padding: 10px; border-radius: 5px;">
         <p style="color: white;">⚠️Senor can make mistakes. Information updated only till 2023. Please consider checking important information.</p>
     </div>
 """, unsafe_allow_html=True)
