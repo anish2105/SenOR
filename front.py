@@ -72,12 +72,8 @@ if st.button("Repeat"):
             st.write(st.session_state.messages[-2]["content"])
 
 
-# if st.button("Convert to Speech"):
-#         if st.session_state.messages[-1]["role"] == "assistant":
-#             text_speech(st.session_state.messages[-1]["content"])
-
 st.markdown("""
     <div style="background-color: #FFFF8F	; padding: 10px; border-radius: 5px;">
-        <p style="color: black;">⚠️Senor can make mistakes. Information updated only till 2023. Please consider checking important information.</p>
+        <p style="color: black;">⚠️Senor can make mistakes. Information is updated only till 2023. Please consider checking important information.</p>
     </div>
 """, unsafe_allow_html=True)
