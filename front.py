@@ -1,11 +1,12 @@
 import streamlit as st
 from back import *
-
+#import back
+st.set_page_config(page_title="💬👨🏻‍⚖️ SenOR Legal Advisor")
 st.title("🤖 SenOR ")
 with st.sidebar:
     st.markdown("<h1 style='text-align:center;font-family:Georgia;font-size:26px;'>🧑‍⚖️ SenOR Legal Advisor </h1>",
                 unsafe_allow_html=True)
-    st.markdown("<h7 style='text-align:left;font-size:20px;'>This app is a smart legal chatbot that is integrated into an easy-to-use platform. This would give lawyers "
+    st.markdown("<h7 style='text-align: justify;font-size:20px;'>This app is a smart legal chatbot that is integrated into an easy-to-use platform. This would give lawyers "
                 "instant access to legal information of Women’s Legal Rights and remove the need for laborious manual research in books or regulations using the power "
                 "of Large Language Models</h7>", unsafe_allow_html=True)
     st.markdown("-------")
@@ -60,8 +61,9 @@ if st.session_state.messages[-1]["role"] != "assistant":
     st.session_state.messages.append(message)
 
 if st.button("Convert to Speech"):
-    audio_base64 = text_speech(full_response)
-    st.audio(base64.b64decode(audio_base64), format='audio/mp3')
+    if st.session_state.messages[-1]["role"] == "assistant":
+        audio_base64 = text_speech(st.session_state.messages[-1]["content"])
+        st.audio(base64.b64decode(audio_base64), format='audio/mp3')
 
 if st.button("Repeat"):
     if len(st.session_state.messages) > 1:
@@ -72,6 +74,6 @@ if st.button("Repeat"):
 
 st.markdown("""
     <div style="background-color: #FFFF8F	; padding: 10px; border-radius: 5px;">
-        <p style="color: black;">⚠️Senor can make mistakes. Information is updated only till 2023. Please consider checking important information.</p>
+        <p style="color: black;">⚠️Senor can make mistakes. Information updated only till 2023. Please consider checking important information.</p>
     </div>
 """, unsafe_allow_html=True)
