@@ -68,3 +68,15 @@ def text_speech(text):
     # Convert speech to base64 encoding
     speech_base64 = base64.b64encode(speech_bytes.read()).decode('utf-8')
     return speech_base64
+
+
+def handle_question(user_query):
+    if user_query == "rerun" and len(question_stack) > 0:
+        # Pop the previous question from the stack and append it back
+        prev_ques = question_stack.pop()
+        question_stack.append(prev_ques)
+        return prev_ques
+    else:
+        # Push the current question onto the stack
+        question_stack.append(user_query)
+        return user_query
