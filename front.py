@@ -1,6 +1,5 @@
 import streamlit as st
 from back import *
-#import back
 
 st.title("🤖 SenOR ")
 with st.sidebar:
@@ -60,17 +59,14 @@ if st.session_state.messages[-1]["role"] != "assistant":
     message = {"role": "assistant", "content": full_response}
     st.session_state.messages.append(message)
 
-if st.button("Convert to Speech"):
-    if st.session_state.messages[-1]["role"] == "assistant":
-        audio_base64 = text_speech(st.session_state.messages[-1]["content"])
+    if st.button("Convert to Speech"):
+        audio_base64 = text_speech(full_response)
         st.audio(base64.b64decode(audio_base64), format='audio/mp3')
 
-if st.button("Repeat", help="Repeat"):
-    if len(st.session_state.messages) > 1:
-        st.session_state.messages[-1] = {"role": "assistant", "content": st.session_state.messages[-2]["content"]}
+    if st.button("Repeat"):
         st.session_state.messages.append({"role": "user", "content": st.session_state.messages[-2]["content"]})
-
-
+        with st.chat_message("user"):
+            st.write(st.session_state.messages[-2]["content"])
 
 st.markdown("""
     <div style="background-color: #FFFF8F	; padding: 10px; border-radius: 5px;">
