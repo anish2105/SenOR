@@ -65,11 +65,18 @@ if st.button("Convert to Speech"):
         audio_base64 = text_speech(st.session_state.messages[-1]["content"])
         st.audio(base64.b64decode(audio_base64), format='audio/mp3')
 
-if st.button("Repeat"):
+if st.button("<svg xmlns='http://www.w3.org/2000/svg' fill='currentColor' class='bi bi-arrow-counterclockwise' viewBox='0 0 16 16' style='width: 1.25em; height: 1.25em;'><path fill-rule='evenodd' d='M6.727 1.96a6.5 6.5 0 1 1-.766 7.06.75.75 0 0 1 1.442-.442A5 5 0 1 0 5.5 2.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.727-.29zM7.646 3.75a.75.75 0 0 1 .75.75V7a.75.75 0 1 1-1.5 0V4.236l-1.378 1.378a.75.75 0 1 1-1.06-1.06l2-2z'/></svg>", help="Repeat"):
     if len(st.session_state.messages) > 1:
         st.session_state.messages.append({"role": "user", "content": st.session_state.messages[-2]["content"]})
         with st.chat_message("user"):
             st.write(st.session_state.messages[-2]["content"])
+
+
+# if st.button("Repeat"):
+#     if len(st.session_state.messages) > 1:
+#         st.session_state.messages.append({"role": "user", "content": st.session_state.messages[-2]["content"]})
+#         with st.chat_message("user"):
+#             st.write(st.session_state.messages[-2]["content"])
 
 
 st.markdown("""
