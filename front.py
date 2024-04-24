@@ -64,9 +64,11 @@ if st.session_state.messages[-1]["role"] != "assistant":
         st.audio(base64.b64decode(audio_base64), format='audio/mp3')
 
     if st.button("Repeat"):
-        st.session_state.messages.append({"role": "user", "content": st.session_state.messages[-2]["content"]})
-        with st.chat_message("user"):
-            st.write(st.session_state.messages[-2]["content"])
+        if len(st.session_state.messages) > 1:
+            st.session_state.messages.append({"role": "user", "content": st.session_state.messages[-2]["content"]})
+            with st.chat_message("user"):
+                st.write(st.session_state.messages[-2]["content"])
+
 
 st.markdown("""
     <div style="background-color: #FFFF8F	; padding: 10px; border-radius: 5px;">
