@@ -37,7 +37,7 @@ st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 def submit():
     st.session_state.something = st.session_state.widget
     st.empty()
-
+    
 if "messages" not in st.session_state:
     st.session_state.messages = [{"role": "assistant", "content": "How may I help you today?"}]
 
