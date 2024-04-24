@@ -65,21 +65,11 @@ if st.button("Convert to Speech"):
         audio_base64 = text_speech(st.session_state.messages[-1]["content"])
         st.audio(base64.b64decode(audio_base64), format='audio/mp3')
 
-if st.button("<a href="https://iconscout.com/icons/anticlockwise" class="text-underline font-size-sm" target="_blank">Anticlockwise</a> by <a href="https://iconscout.com/contributors/dario-ferrando" class="text-underline font-size-sm">Dario Ferrando</a> on <a href="https://iconscout.com" class="text-underline font-size-sm">IconScout</a>", help="Repeat"):
-   if len(st.session_state.messages) > 1:
+if st.button("Repeat", help="Repeat"):
+    if len(st.session_state.messages) > 1:
         st.session_state.messages[-1] = {"role": "assistant", "content": st.session_state.messages[-2]["content"]}
         st.session_state.messages.append({"role": "user", "content": st.session_state.messages[-2]["content"]})
-    # if len(st.session_state.messages) > 1:
-    #     st.session_state.messages.append({"role": "user", "content": st.session_state.messages[-2]["content"]})
-    #     with st.chat_message("user"):
-    #         st.write(st.session_state.messages[-2]["content"])
 
-
-# if st.button("Repeat"):
-#     if len(st.session_state.messages) > 1:
-#         st.session_state.messages.append({"role": "user", "content": st.session_state.messages[-2]["content"]})
-#         with st.chat_message("user"):
-#             st.write(st.session_state.messages[-2]["content"])
 
 
 st.markdown("""
