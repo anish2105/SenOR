@@ -65,6 +65,13 @@ if st.button("Convert to Speech"):
         audio_base64 = text_speech(st.session_state.messages[-1]["content"])
         st.audio(base64.b64decode(audio_base64), format='audio/mp3')
 
+if st.button("Repeat"):
+    if len(st.session_state.messages) > 1:
+        st.session_state.messages.append({"role": "user", "content": st.session_state.messages[-2]["content"]})
+        with st.chat_message("user"):
+            st.write(st.session_state.messages[-2]["content"])
+
+
 # if st.button("Convert to Speech"):
 #         if st.session_state.messages[-1]["role"] == "assistant":
 #             text_speech(st.session_state.messages[-1]["content"])
