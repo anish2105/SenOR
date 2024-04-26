@@ -56,6 +56,7 @@ def model(user_query, max_length, temp):
             answer = answer[:last_period_index + 1]
         return answer
     else:
+        response = ""
         assistant_index = response.find("assistant:")
         if assistant_index != -1:
             response = response[:assistant_index].strip()
