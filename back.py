@@ -48,6 +48,8 @@ def model(user_query, max_length, temp):
                                      verbose=True,
                                      chain_type_kwargs={"prompt": prompt})
     # return qa(user_query)["result"]
+    response = qa(user_query)["result"]
+    
     answer_start = response.find("Answer:")
     if answer_start != -1:
         answer = response[answer_start + len("Answer:"):].strip()
