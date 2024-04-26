@@ -51,14 +51,16 @@ def model(user_query, max_length, temp):
     # return qa(user_query)["result"]
     response = qa(user_query)["result"]
     answer_start = response.find("Answer:")
-    if answer_start != -1:
-        answer = response[answer_start + len("Answer:"):].strip()
-        last_period_index = answer.rfind('.')
-        if last_period_index != -1:
-            answer = answer[:last_period_index + 1]  # Include the last period
+if answer_start != -1:
+    answer = response[answer_start + len("Answer:"):].strip()
+    
+    last_period_index = answer.rfind('.')
+    
+    if last_period_index != -1:
+        answer = answer[:last_period_index + 1]
         return answer
-    else:
-        return "Sorry, I couldn't find the answer."
+else:
+    return "Sorry, I couldn't find the answer."
 
         
 def text_speech(text):
