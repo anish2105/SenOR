@@ -23,6 +23,9 @@ with st.sidebar:
     max_length = st.slider("Token Max Length", min_value=128, max_value=3000, value=512, step=128)
     temp = st.slider("Temperature", min_value=0.1, max_value=1.0, value=0.5, step=0.1)
 
+    language = st.radiobox("Select Language for Speech", options=['en', 'hi', 'es', 'fr', 'de', 'zh-cn'])
+
+
 if "messages" not in st.session_state:
     st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
 
@@ -70,11 +73,11 @@ if st.button("Repeat Last Response"):
 
 if st.button("Convert to Speech"):
     if st.session_state.messages[-1]["role"] == "assistant":
-        audio_base64 = text_speech(st.session_state.messages[-1]["content"])
+        audio_base64 = text_speech(st.session_state.messages[-1]["content"], lang=language)
         st.audio(base64.b64decode(audio_base64), format='audio/mp3')
 
 st.markdown("""
-    <div style="background-color: #FFFF8F	; padding: 10px; border-radius: 5px;">
-        <p style="color: black;">⚠️Senor can make mistakes. Information updated only till 2023. Please consider checking important information.</p>
+    <div style="background-color: #FFFF8F; padding: 10px; border-radius: 5px;">
+        <p style="color: black;">⚠️Senor can make mistakes. Information is updated only till 2023. Please consider checking important information.</p>
     </div>
 """, unsafe_allow_html=True)
