@@ -36,7 +36,8 @@ with st.sidebar:
             ('Malayalam', 'ml'), 
             ('Marathi', 'mr'), 
             ('Punjabi', 'pa'), 
-            ('Urdu', 'ur')
+            ('Urdu', 'ur'),
+            ('Chinese','zh-CN')
         ], 
         format_func=lambda x: x[0]  # Display the full language name
     )
