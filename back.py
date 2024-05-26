@@ -62,15 +62,14 @@ def model(user_query, max_length, temp):
         return answer
 
 
-        
-def text_speech(text):
-    tts = gTTS(text=text, lang='hin')
-
+def text_speech(text, lang='en'):
+    tts = gTTS(text=text, lang=lang)
+    
     # Save speech to a BytesIO object
     speech_bytes = io.BytesIO()
     tts.write_to_fp(speech_bytes)
     speech_bytes.seek(0)
-
+    
     # Convert speech to base64 encoding
     speech_base64 = base64.b64encode(speech_bytes.read()).decode('utf-8')
     return speech_base64
