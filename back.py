@@ -64,7 +64,7 @@ def model(user_query, max_length, temp):
 
         
 def text_speech(text):
-    tts = gTTS(text=text, lang='en')
+    tts = gTTS(text=text, lang='hin')
 
     # Save speech to a BytesIO object
     speech_bytes = io.BytesIO()
