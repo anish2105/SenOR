@@ -23,7 +23,7 @@ with st.sidebar:
     max_length = st.slider("Token Max Length", min_value=128, max_value=3000, value=512, step=128)
     temp = st.slider("Temperature", min_value=0.1, max_value=1.0, value=0.5, step=0.1)
 
-    language = st.radiobox("Select Language for Speech", options=['en', 'hi', 'es', 'fr', 'de', 'zh-cn'])
+    language = st.selectbox("Select Language for Speech", options=['en', 'hi', 'es', 'fr', 'de', 'zh-cn'])
 
 
 if "messages" not in st.session_state:
