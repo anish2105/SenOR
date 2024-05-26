@@ -35,24 +35,24 @@ def clear_chat_history():
     st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
 st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 
-if user_prompt := st.chat_input("enter your query"):
+def generate_response(prompt, max_length, temp):
+    response = model(prompt, max_length, temp)
+    full_response = ''.join(response)
+    return full_response
+
+if user_prompt := st.chat_input("Enter your query"):
     st.session_state.messages.append({"role": "user", "content": user_prompt})
     with st.chat_message("user"):
         st.write(user_prompt)
 
-    if st.session_state.messages[-1]["role"] != "assistant":
-        with st.chat_message("assistant"):
-            with st.spinner("Thinking..."):
-                response = model(user_prompt, max_length, temp)
-                placeholder = st.empty()
-                full_response = ''
-                for item in response:
-                    full_response += item
-                    placeholder.markdown(full_response)
-                placeholder.markdown(full_response)
-        message = {"role": "assistant", "content": full_response}
-        st.session_state.messages.append(message)
-        
+    with st.chat_message("assistant"):
+        with st.spinner("Thinking..."):
+            response = generate_response(user_prompt, max_length, temp)
+            placeholder = st.empty()
+            placeholder.markdown(response)
+    message = {"role": "assistant", "content": response}
+    st.session_state.messages.append(message)
+
 if st.button("Repeat Last Response"):
     last_user_message = None
     for message in reversed(st.session_state.messages):
@@ -67,7 +67,6 @@ if st.button("Repeat Last Response"):
                 placeholder.markdown(response)
         message = {"role": "assistant", "content": response}
         st.session_state.messages.append(message)
-
 
 if st.button("Convert to Speech"):
     if st.session_state.messages[-1]["role"] == "assistant":
