@@ -52,6 +52,22 @@ if user_prompt := st.chat_input("enter your query"):
                 placeholder.markdown(full_response)
         message = {"role": "assistant", "content": full_response}
         st.session_state.messages.append(message)
+        
+if st.button("Repeat Last Response"):
+    last_user_message = None
+    for message in reversed(st.session_state.messages):
+        if message["role"] == "user":
+            last_user_message = message["content"]
+            break
+    if last_user_message:
+        with st.chat_message("assistant"):
+            with st.spinner("Regenerating response..."):
+                response = generate_response(last_user_message, max_length, temp)
+                placeholder = st.empty()
+                placeholder.markdown(response)
+        message = {"role": "assistant", "content": response}
+        st.session_state.messages.append(message)
+
 
 if st.button("Convert to Speech"):
     if st.session_state.messages[-1]["role"] == "assistant":
